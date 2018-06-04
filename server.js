@@ -33,14 +33,14 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/week18Populater", {
+mongoose.connect("mongodb://localhost/LFCPopulater", {
   useMongoClient: true
 });
 
 
 // Routes
 
-// A GET route for scraping the echojs website
+// A GET route for scraping the Liverpool Offside website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("https://liverpooloffside.sbnation.com/").then(function(response) {
