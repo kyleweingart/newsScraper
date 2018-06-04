@@ -1,32 +1,68 @@
+body {
+  background-color: #dd272d;
+  background-image: url(liverbird.png);
+  background-repeat: repeat;
+  background-size: 100px;
+}
 
-      body { background-color: #dd272d }
-      #wrapper {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-      }
-      #articles {
-        display: inline-block;
-        overflow: auto;
-        width: 60%;
-        height: 700px;
-      }
-      #notes {
-        float: right;
-        width: 30%;
-      }
-      textarea, input {
-        display: block;
-        width: 100%;
-        background-color: #dcdcdc;
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
- 
+.navbar {
+  border-top: 5px solid #e8e8e8;
+  border-bottom: 5px solid #e8e8e8;
+  border-left: 3px solid #e8e8e8;
+  border-right: 3px solid #e8e8e8;
+}
+
+.title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 2.5vw;
+  padding-right: 15px;
+  border-right: 1px solid #e8e8e8;
+  
+}
+
+.right {
+  margin-right: 5px;
+}
+
+.left {
+  margin-right: 25px;
+}
+
+.jumbotron {
+  background-image: url("download.jpeg");
+  background-size: cover;
+  padding: 24rem 1rem;
+  text-align: center;
+  color: #dcdcdc;
+  padding-top: 25px;
+}
+
+#articles {
+  display: inline-block;
+  overflow: auto;
+  width: 60%;
+  height: 700px;
+}
+#comments {
+  float: right;
+  width: 30%;
+}
+textarea,
+input {
+  display: block;
+  width: 100%;
+  background-color: #dcdcdc;
+}
+input {
+  height: 36px;
+  font-size: 24px;
+}
+textarea {
+  height: 200px;
+  font-size: 18px;
+}
+
+.footer {
+  background-color: #dcdcdc;
+  text-align: center;
+}
