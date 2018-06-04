@@ -43,6 +43,9 @@ body {
   width: 60%;
   height: 700px;
 }
+.card {
+  width:18rem;
+}
 #comments {
   float: right;
   width: 30%;
