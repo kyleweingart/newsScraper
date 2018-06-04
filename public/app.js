@@ -5,14 +5,18 @@ function displayResults(articles) {
   // Then, for each entry of that json...
   articles.forEach(function(article) {
     // Append each of the animal's properties to the table
-    $("#articles").append("<div class=card>");
-    $("#articles").append("<img class=card-img-top src=liverbird.png alt=Card image cap>");
-    $("#articles").append("<div class=card-body>");
-    $("#articles").append("<h5 class=card-title>" + article.title + "</h5");
-    $("#articles").append("<p class=card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</p>");
-    $("#articles").append("<a href=# class=btn btn-primary>Save</a>");
-    $("#articles").append("</div>");
-    $("#articles").append("</div>");
+    $("#articles").append("<div class=card>" + "<img class=card-img-top src=liverbird.png alt=Card image cap>"
+    + "<div class=card-body>" + "<h5 class=card-title>" + article.title + "</h5" + 
+    "<p class=card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</p>" + 
+    "<a href=# class=btn btn-primary>Save</a>" + "</div>" + "</div>");
+    
+    // $("#articles").append("<img class=card-img-top src=liverbird.png alt=Card image cap>");
+    // $("#articles").append("<div class=card-body>");
+    // $("#articles").append("<h5 class=card-title>" + article.title + "</h5");
+    // $("#articles").append("<p class=card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</p>");
+    // $("#articles").append("<a href=# class=btn btn-primary>Save</a>");
+    // $("#articles").append("</div>");
+    // $("#articles").append("</div>");
 
 
 
