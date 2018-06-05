@@ -6,20 +6,12 @@ function displayResults(articles) {
   articles.forEach(function (article) {
     // Append each of the animal's properties to the table
     $("#articles").append("<div class=card>" + "<img class=card-img-top src=liverbird.png alt=Card image cap>"
-      + "<div class=card-body>" + "<h5 class=card-title>" + article.title + "</h5>" +
-      "<p class=card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</p>" +
-      "<a href=# class=btn >Save</a>" + "</div>" + "</div>");
+      + "<div class=card-body>" + "<h5 class=card-title>" + "<a href=" + article.link + ">" + article.title + "</a>" + "</h5>" +
+      "<p class=card-text>" + article.summary + "</p>" + "<p class=byline>" + article.byline + "</p>" +
+      "<a class=btn >Save</a>" + "</div>" + "</div>");
 
       $("a").addClass("btn-outline-danger");
-
-    // $("#articles").append("<img class=card-img-top src=liverbird.png alt=Card image cap>");
-    // $("#articles").append("<div class=card-body>");
-    // $("#articles").append("<h5 class=card-title>" + article.title + "</h5");
-    // $("#articles").append("<p class=card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</p>");
-    // $("#articles").append("<a href=# class=btn btn-primary>Save</a>");
-    // $("#articles").append("</div>");
-    // $("#articles").append("</div>");
-
+      
  });
 }
 
@@ -45,7 +37,7 @@ $("#scrape").click(function () {
 });
 
 
-// Whenever someone clicks a p tag
+// Whenever someone clicks save button
 $(document).on("click", "p", function () {
   // Empty the notes from the note section
   $("#comments").empty();
