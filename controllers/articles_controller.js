@@ -105,9 +105,10 @@ router.post("/articles/:id", function (req, res) {
 });
 
 // Route for saving an article
- router.post("/articles/:id", function (req, res) {
-   db.Article.updateOne(
-     { _id: req.params.id },
+ router.post("/marksaved/:id", function (req, res) {
+   console.log("working");
+   db.articles.update(
+     { _id: mongojs.ObjectID(req.params.id)},
      {$set: {saved: true}}
   );
  });

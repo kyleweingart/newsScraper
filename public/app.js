@@ -10,10 +10,12 @@ function displayResults(articles) {
     $("#articles").append("<div class=card>" + "<img class=card-img-top src=liverbird.png alt=Card image cap>"
       + "<div class=card-body>" + "<a href=" + article.link + ">" + "<h6 class=card-title>"  + article.title + "</h6>" + "</a>" +
       "<p class=card-text>" + article.summary + "</p>" + "<p class=byline>" + "By: " + article.byline + "</p>" +
-      "<a class=btn id=save>Save</a>" + "</div>" + "</div>");
+      "<a class=save data-id=" + article._id +  ">Save</a>" + "</div>" + "</div>");
 
-      $("a.btn").addClass("btn-outline-danger");
-      // $("a.btn").attr("id", "save");
+      $("a.save").addClass("btn-outline-danger");
+      $("a.save").addClass("btn");
+      // $("a.btn").addClass("save");
+      // $("a.btn").attr("id", "btn-position");
       
  });
 }
@@ -41,11 +43,12 @@ $("#scrape").click(function () {
 
 
 // Whenever someone clicks save button
-$(document).on("click", "#save", function () {
+$(document).on("click", ".save", function () {
   alert("article saved");
+  var thisID = $(this).attr("data-id");
   $.ajax({
-    method: "POST",
-    url: "/articles/" + thisID
+    method: "GET",
+    url: "/marksaved/" + thisID
   })
 });
 // ====================================================
