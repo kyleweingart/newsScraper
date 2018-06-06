@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 function displayResults(articles) {
   // First, empty the table
   $("#articles").empty();
@@ -6,11 +8,12 @@ function displayResults(articles) {
   articles.forEach(function (article) {
     // Append each of the animal's properties to the table
     $("#articles").append("<div class=card>" + "<img class=card-img-top src=liverbird.png alt=Card image cap>"
-      + "<div class=card-body>" + "<h5 class=card-title>" + "<a href=" + article.link + ">" + article.title + "</a>" + "</h5>" +
-      "<p class=card-text>" + article.summary + "</p>" + "<p class=byline>" + article.byline + "</p>" +
-      "<a class=btn >Save</a>" + "</div>" + "</div>");
+      + "<div class=card-body>" + "<a href=" + article.link + ">" + "<h6 class=card-title>"  + article.title + "</h6>" + "</a>" +
+      "<p class=card-text>" + article.summary + "</p>" + "<p class=byline>" + "By: " + article.byline + "</p>" +
+      "<a class=btn id=save>Save</a>" + "</div>" + "</div>");
 
-      $("a").addClass("btn-outline-danger");
+      $("a.btn").addClass("btn-outline-danger");
+      // $("a.btn").attr("id", "save");
       
  });
 }
@@ -28,7 +31,7 @@ $.getJSON("/articles", function (data) {
 });
 
 $("#scrape").click(function () {
-  alert("The scrape button was clicked.");
+  // alert("The scrape button was clicked.");
   $.ajax({
     method: "GET",
     url: "/scrape"
@@ -38,6 +41,17 @@ $("#scrape").click(function () {
 
 
 // Whenever someone clicks save button
+$(document).on("click", "#save", function () {
+  alert("article saved");
+  $.ajax({
+    method: "POST",
+    url: "/articles/" + thisID
+  })
+});
+// ====================================================
+// need to work on this- how to get thisID from click? 
+
+
 $(document).on("click", "p", function () {
   // Empty the notes from the note section
   $("#comments").empty();
@@ -98,4 +112,6 @@ $(document).on("click", "#savenote", function () {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
+
 });
