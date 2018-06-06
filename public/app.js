@@ -44,11 +44,11 @@ $("#scrape").click(function () {
 
 // Whenever someone clicks save button
 $(document).on("click", ".save", function () {
-  alert("article saved");
+  // alert("article saved");
   var thisID = $(this).attr("data-id");
   $.ajax({
-    method: "GET",
-    url: "/marksaved/" + thisID
+    method: "POST",
+    url: "/articles/" + thisID
   })
 });
 // ====================================================
