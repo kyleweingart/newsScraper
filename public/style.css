@@ -47,6 +47,10 @@ body {
   border: 3px solid #dcdcdc;
 }
 
+.card:hover {
+  border: 3px solid #5d5d5d
+}
+
 .card-img-top {
   width: 40%;
   margin-left: 75px;

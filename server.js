@@ -49,7 +49,7 @@ mongoose.connect("mongodb://localhost/LFCPopulater");
 // Import routes and give the server access to them.
 var routes = require("./controllers/articles_controller.js");
 
-app.use('/', routes);
+app.use(routes);
 
 
 // =========================================================================================================
