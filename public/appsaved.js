@@ -30,7 +30,6 @@ function displayResults(articles) {
 
 // Get JSON of all saved articles from the backend
 
-// Grab the articles as a json
 $.getJSON("/savedarticles", function (data) {
 
   displayResults(data);
@@ -38,56 +37,21 @@ $.getJSON("/savedarticles", function (data) {
 });
 
 
-// $("#saved-articles").click(function () {
-//   $.ajax({
-//     method: "GET",
-//     url: "/savedarticles"
-//   })
-
-  
- 
-  
-// });
-
-// $.getJSON("/savedarticles", function(data) {
-
-//   displayResults(data);
-
-// }
-
-// Scrape new articles
-
-// $("#scrape").click(function () {
-//   // alert("The scrape button was clicked.");
-//   $.ajax({
-//     method: "GET",
-//     url: "/scrape"
-//   })
-  
-// });
-
-// Whenever someone clicks delete button
+// Click delete button
 $(document).on("click", ".delete", function () {
   // alert("article saved");
   var thisID = $(this).attr("data-id");
   $.ajax({
     method: "POST",
     url: "/articles/delete/" + thisID
-  })
+  }).done(function(data) {
+    window.location = "/savedarticles.html"
+})
+  
 });
-// Whenever someone clicks save button
-// $(document).on("click", ".save", function () {
-//   // alert("article saved");
-//   var thisID = $(this).attr("data-id");
-//   $.ajax({
-//     method: "POST",
-//     url: "/articles/" + thisID
-//   })
-// });
-// ====================================================
-// need to work on this- how to get thisID from click? 
 
 
+// Click comment button
 $(document).on("click", ".comment", function () {
   // Empty the notes from the note section
   $("#comments").empty();
@@ -121,7 +85,7 @@ $(document).on("click", ".comment", function () {
     });
 });
 
-// When you click the savenote button
+// click the savecomment button
 $(document).on("click", "#savecomment", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");

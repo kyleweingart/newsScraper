@@ -13,7 +13,6 @@ var db = require("../models");
 
 
 
-
 // ROUTES
 // =======================================================================================================
 
@@ -50,11 +49,11 @@ router.get("/scrape", function (req, res) {
           return res.json(err);
         });
     });
-
-    // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+   
   });
 });
+
+
 
 // Route for getting all Articles from the db
 router.get("/articles", function (req, res) {
@@ -70,6 +69,9 @@ router.get("/articles", function (req, res) {
     });
 });
 
+
+
+
 // Route for getting all SAVED Articles from the db
 router.get("/savedarticles", function (req, res) {
   // Grab every document in the Articles collection
@@ -83,16 +85,17 @@ router.get("/savedarticles", function (req, res) {
       // If an error occurred, send it to the client
       res.json(err);
     });
-
-    
 });
+
+
+
 
 
 // Route for grabbing a specific Article by id, populate it with it's comment
 router.get("/articles/:id", function (req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.findOne({ _id: req.params.id })
-    // ..and populate all of the notes associated with it
+    // ..and populate all of the comments associated with it
     .populate("comment")
     .then(function (dbArticle) {
       // If we were able to successfully find an Article with the given id, send it back to the client
@@ -103,6 +106,9 @@ router.get("/articles/:id", function (req, res) {
       res.json(err);
     });
 });
+
+
+
 
 
 
@@ -125,6 +131,8 @@ router.post("/articles/:id", function (req, res) {
       res.json(err);
     });
 });
+
+
 
 
 
@@ -157,7 +165,10 @@ router.post("/articles/:id", function (req, res) {
  });
 
 
-//  Route for deleting previously saved article
+
+
+
+ //  Route for deleting previously saved article
  router.post("/articles/delete/:id", function (req, res) {
    
   db.Article.findOneAndUpdate(
