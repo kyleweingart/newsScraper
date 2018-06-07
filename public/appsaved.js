@@ -12,13 +12,14 @@ function displayResults(articles) {
     $("#articles").append("<div class=card>" + "<img class=card-img-top src=liverbird.png alt=Card image cap>"
       + "<div class=card-body>" + "<a href=" + article.link + ">" + "<h6 class=card-title>"  + article.title + "</h6>" + "</a>" +
       "<p class=card-text>" + article.summary + "</p>" + "<p class=byline>" + "By: " + article.byline + "</p>" +
-      "<a class=comment data-id=" + article._id +  ">Comment</a>" + "<a class=delete data-id=" + article._id +  
-      ">Delete</a>" +  "</div>" + "</div>");
+      "<a class=comment data-target=#comments data-toggle=modal data-id=" + article._id +  ">Comment</a>" + 
+      "<a class=delete data-id=" + article._id +  
+      ">Remove</a>" +  "</div>" + "</div>");
 
       $("a.comment").addClass("btn-outline-danger");
       $("a.comment").addClass("btn");
       $("a.delete").addClass("btn");
-      $("a.delete").addClass("btn-outline-primary");
+      $("a.delete").addClass("btn-outline-dark");
       // $("a.btn").addClass("save");
       // $("a.btn").attr("id", "btn-position");
       
@@ -44,9 +45,9 @@ $(document).on("click", ".delete", function () {
   $.ajax({
     method: "POST",
     url: "/articles/delete/" + thisID
-  }).done(function(data) {
-    window.location = "/savedarticles.html"
-})
+  }).then(function() {
+    location.reload();
+});
   
 });
 
@@ -54,7 +55,7 @@ $(document).on("click", ".delete", function () {
 // Click comment button
 $(document).on("click", ".comment", function () {
   // Empty the notes from the note section
-  $("#comments").empty();
+  // $("#comments").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
@@ -67,7 +68,7 @@ $(document).on("click", ".comment", function () {
     .then(function (data) {
       console.log(data);
       // The title of the article
-      $("#comments").append("<h2>" + data.title + "</h2>");
+      $("#comments").append("<h4>" + data.title + "</h4>");
       // An input to enter a new title
       $("#comments").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body

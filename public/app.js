@@ -3,7 +3,7 @@ $(document).ready(function () {
   // FUNCTION to display all articles
   function displayResults(articles) {
     // First, empty the table
-    $("#articles").empty();
+    // $("#articles").empty();
     console.log("cool");
     // Then, for each entry of that json...
     articles.forEach(function (article) {
@@ -47,7 +47,9 @@ $(document).ready(function () {
     $.ajax({
       method: "GET",
       url: "/scrape"
-    })
+    }).then(function(){
+      location.reload();
+    });
 
   });
 
@@ -59,7 +61,9 @@ $(document).ready(function () {
     $.ajax({
       method: "POST",
       url: "/articles/saved/" + thisID
-    })
+    }).then(function() {
+      location.reload();
+  });
   });
 
 });

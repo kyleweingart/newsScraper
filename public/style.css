@@ -67,6 +67,20 @@ a {
   font-size: .75rem;
   margin-bottom: 10px;
 }
+.comment {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  font-size: .75rem;
+  margin-bottom: 10px;
+}
+.delete {
+  position: absolute;
+  bottom: 10px;
+  left: 150px;
+  font-size: .75rem;
+  margin-bottom: 10px;
+}
 
 textarea,
 input {
