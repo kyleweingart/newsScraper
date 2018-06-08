@@ -6,15 +6,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var exphbs = require("express-handlebars");
 
-// Our scraping tools
-
-// var axios = require("axios");
-// var cheerio = require("cheerio");
-
-// Require all models (MongoDB data schemas)
-// var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
 
@@ -32,7 +24,11 @@ app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 // Use handlebars 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ 
+    defaultLayout: "main",
+    partialsDir: __dirname + '/views/layouts/partials/'
+  }));
 app.set("view engine", "handlebars");
 
 

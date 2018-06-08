@@ -13,6 +13,8 @@ var db = require("../models");
 
 
 
+
+
 // ROUTES
 // =======================================================================================================
 
@@ -49,49 +51,34 @@ router.get("/scrape", function (req, res) {
           return res.json(err);
         });
     });
-   
+
   });
 });
 
 
-
-// Route for getting all unsaved articles from the db
-router.get("/articles", function (req, res) {
+// GET Route for getting all unsaved articles from MongoDB
+router.get("/", function (req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({ saved: false})
+  db.Article.find({ saved: false })
     .then(function (dbArticle) {
-      // If we were able to successfully find Articles, send them back to the client
-      res.json(dbArticle);
-    })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-      res.json(err);
+      res.render("index", { article: dbArticle });
     });
+
 });
 
 
-
-
-// Route for getting all SAVED Articles from the db
+// GET Route for getting all saved articles from MongoDB
 router.get("/savedarticles", function (req, res) {
-  // Grab every document in the Articles collection
-  db.Article.find({ saved: true})
+
+  db.Article.find({ saved: true })
     .then(function (dbArticle) {
-      // If we were able to successfully find Articles, send them back to the client
-      res.json(dbArticle);
-      
-    })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-      res.json(err);
+      res.render("saved", { article: dbArticle });
     });
+
 });
 
 
-
-
-
-// Route for grabbing a specific Article by id, populate it with it's comment
+// GET route for grabbing a specific Article by id and then populate it with it's comment  *********** needs work
 router.get("/articles/:id", function (req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article.findOne({ _id: req.params.id })
@@ -112,12 +99,18 @@ router.get("/articles/:id", function (req, res) {
 
 
 
-// Route for saving/updating an Article's associated Comment
-router.post("/articles/:id", function (req, res) {
+// Route for saving/updating an Article's associated Comment ************ needs work
+router.post("/comments/saved/:id", function (req, res) {
   // Create a new note and pass the req.body to the entry
-  db.Comment.create(req.body)
+  db.Comment.create({
+    title: req.body.title,
+    body: req.body.text,
+    article: req.params.id
+
+
+  })
     .then(function (dbComment) {
-      // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+      // If a Comment was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
@@ -137,19 +130,19 @@ router.post("/articles/:id", function (req, res) {
 
 
 // Route for saving an article
- router.post("/articles/saved/:id", function (req, res) {
-   
-   db.Article.findOneAndUpdate(
-     { 
-       "_id": req.params.id
-     },
+router.post("/articles/saved/:id", function (req, res) {
 
-     {
-       $set: {
-         "saved": true
-        }
-     })
-     .then(function(err, result) {
+  db.Article.findOneAndUpdate(
+    {
+      "_id": req.params.id
+    },
+
+    {
+      $set: {
+        "saved": true
+      }
+    })
+    .then(function (err, result) {
       // show any errors
       if (err) {
         console.log(err);
@@ -161,39 +154,39 @@ router.post("/articles/:id", function (req, res) {
         res.send(result);
       }
     });
-    
- });
+
+});
 
 
 
 
 
- //  Route for deleting previously saved article
- router.post("/articles/delete/:id", function (req, res) {
-   
+//  Route for deleting previously saved article
+router.post("/articles/delete/:id", function (req, res) {
+
   db.Article.findOneAndUpdate(
-    { 
+    {
       "_id": req.params.id
     },
 
     {
       $set: {
         "saved": false
-       }
+      }
     })
-    .then(function(err, result) {
-     // show any errors
-     if (err) {
-       console.log(err);
-       res.send(err);
-     }
-     else {
-       // Otherwise, send the result of our update to the browser
-       console.log(result);
-       res.send(result);
-     }
-   });
-   
+    .then(function (err, result) {
+      // show any errors
+      if (err) {
+        console.log(err);
+        res.send(err);
+      }
+      else {
+        // Otherwise, send the result of our update to the browser
+        console.log(result);
+        res.send(result);
+      }
+    });
+
 });
 
 

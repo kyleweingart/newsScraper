@@ -1,35 +1,5 @@
 $(document).ready(function () {
 
-  // FUNCTION to display all articles
-  function displayResults(articles) {
-    // First, empty the table
-    // $("#articles").empty();
-    console.log("cool");
-    // Then, for each entry of that json...
-    articles.forEach(function (article) {
-      // Append each of the animal's properties to the table
-      $("#articles").append("<div class=card>" + "<img class=card-img-top src=liverbird.png alt=Card image cap>"
-        + "<div class=card-body>" + "<a href=" + article.link + ">" + "<h6 class=card-title>" + article.title + "</h6>" + "</a>" +
-        "<p class=card-text>" + article.summary + "</p>" + "<p class=byline>" + "By: " + article.byline + "</p>" +
-        "<a class=save data-id=" + article._id + ">Save</a>" + "</div>" + "</div>");
-
-      $("a.save").addClass("btn-outline-danger");
-      $("a.save").addClass("btn");
-    });
-  }
-
-
-  // 1: On Load
-  // ==========
-
-  // GET JSON with all articles from back end
-
-  // Grab the articles as a json
-  $.getJSON("/articles", function (data) {
-
-    displayResults(data);
-
-  });
 
   // GET all saved articles
   $("#saved-articles").click(function () {
@@ -41,19 +11,23 @@ $(document).ready(function () {
 
   });
 
+  
+  
   // Scrape for new articles
   $("#scrape").click(function () {
     // alert("The scrape button was clicked.");
     $.ajax({
       method: "GET",
       url: "/scrape"
-    }).then(function(){
+    }).then(function () {
       location.reload();
     });
 
   });
 
 
+  
+  
   // Save article
   $(document).on("click", ".save", function () {
     // alert("article saved");
@@ -61,9 +35,60 @@ $(document).ready(function () {
     $.ajax({
       method: "POST",
       url: "/articles/saved/" + thisID
-    }).then(function() {
+    }).then(function () {
       location.reload();
+    });
   });
+
+  
+  
+  // Click delete button
+  $(document).on("click", ".delete", function () {
+    // alert("article saved");
+    var thisID = $(this).attr("data-id");
+    $.ajax({
+      method: "POST",
+      url: "/articles/delete/" + thisID
+    }).then(function () {
+      location.reload();
+    });
+
   });
+
+  
+  
+  // Save comment on article  ************************* needs work
+  $(document).on("click", ".savecomment", function () {
+
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+    console.log(thisID);
+    
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+      method: "POST",
+      url: "/comments/saved/" + thisId,
+      data: {
+        // Value taken from title input
+        text: $("#commentText" + thisID).val()
+        // Value taken from note textarea
+      
+      }
+    })
+      // With that done
+      .then(function (data) {
+        // Log the response
+        console.log(data);
+        $("#commentText" + thisID).val("");
+        $(".mdlComment").modal("hide");
+        location.reload();
+        
+        
+      });
+
+    
+   
+  });
+
 
 });

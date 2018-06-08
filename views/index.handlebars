@@ -1,0 +1,22 @@
+<div class="articles">
+    {{#if article}}
+       {{#each article}}
+    <div class=card>
+        <img class="card-img-top" src="liverbird.png" alt="Card image cap">
+        <div class="card-body">
+            <a href={{this.link}}>
+                <h6 class="card-title"> {{this.title}} </h6>
+            </a>
+            <p class="card-text"> {{this.summary}} </p>
+            <p class="byline">By: {{this.byline}}</p>
+            <a class="save btn-outline-danger btn" data-id={{this._id}}>Save</a>
+        </div>
+    </div>
+      {{/each}}
+      {{else}}
+    <h4 style="text-align:center">Please use the scrape articles button to get articles.</h4>
+    {{/if}}
+
+
+
+</div>

@@ -1,3 +1,4 @@
+
 body {
   background-color: #dd272d;
   background-image: url(liverbird.png);
@@ -13,21 +14,25 @@ body {
   border-right: 3px solid #e8e8e8;
 }
 
+.nav-item {
+  margin: 10px;
+}
+
 .title {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 2.5vw;
-  padding-right: 15px;
-  border-right: 1px solid #e8e8e8;
+  font-size:2em;
+  /* padding-right: 15px; 
+  border-right: 1px solid #e8e8e8; */
   
 }
 
-.right {
+/* .right {
   margin-right: 5px;
-}
+} */
 
-.left {
+/* .left {
   margin-right: 25px;
-}
+} */
 
 .jumbotron {
   background-image: url("download.jpeg");
@@ -82,18 +87,26 @@ a {
   margin-bottom: 10px;
 }
 
-textarea,
-input {
-  display: block;
-  width: 100%;
-  background-color: #dcdcdc;
-}
-input {
-  height: 36px;
-  font-size: 24px;
-}
-textarea {
-  height: 200px;
-  font-size: 18px;
+.deleteComment
+{
+  display: inline-block;
 }
 
+
+@media (max-width: 768px) {
+  
+  .title {
+   font-size: 1.5rem;
+    }
+
+}
+
+  @media (max-width: 456px) {
+  
+    .title {
+     font-size: 1.25rem;
+      
+  
+     }
+  
+    }
