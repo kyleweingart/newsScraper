@@ -11,6 +11,8 @@ $(document).ready(function () {
 
   });
 
+  
+  
   // Scrape for new articles
   $("#scrape").click(function () {
     // alert("The scrape button was clicked.");
@@ -24,6 +26,8 @@ $(document).ready(function () {
   });
 
 
+  
+  
   // Save article
   $(document).on("click", ".save", function () {
     // alert("article saved");
@@ -36,6 +40,8 @@ $(document).ready(function () {
     });
   });
 
+  
+  
   // Click delete button
   $(document).on("click", ".delete", function () {
     // alert("article saved");
@@ -49,6 +55,8 @@ $(document).ready(function () {
 
   });
 
+  
+  
   // Save comment on article  ************************* needs work
   $(document).on("click", ".savecomment", function () {
 

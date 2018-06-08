@@ -7,27 +7,6 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-// Handlebars- lets see if i can figure this out
-// ********************************************************
-
-
-// app.engine("handlebars", exphbs({
-//   defaultLayout:"main",
-//   partialDir: path.join(__dirname, "views/layouts/partials")
-// }));
-
-// app.set("view engine", "handlebars");
-// *******************************************************
-
-
-
-// Our scraping tools
-
-// var axios = require("axios");
-// var cheerio = require("cheerio");
-
-// Require all models (MongoDB data schemas)
-// var db = require("./models");
 
 var PORT = process.env.PORT || 3000;
 
