@@ -33,7 +33,7 @@ function displayResults(articles) {
 
 $.getJSON("/savedarticles", function (data) {
 
-  displayResults(data);
+  // displayResults(data);
 
 });
 

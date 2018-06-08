@@ -27,7 +27,7 @@ $(document).ready(function () {
   // Grab the articles as a json
   $.getJSON("/articles", function (data) {
 
-    displayResults(data);
+    // displayResults(data);
 
   });
 

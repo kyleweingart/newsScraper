@@ -6,7 +6,20 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var exphbs = require("express-handlebars");
+
+// Handlebars- lets see if i can figure this out
+// ********************************************************
+
+
+// app.engine("handlebars", exphbs({
+//   defaultLayout:"main",
+//   partialDir: path.join(__dirname, "views/layouts/partials")
+// }));
+
+// app.set("view engine", "handlebars");
+// *******************************************************
+
+
 
 // Our scraping tools
 
@@ -32,7 +45,10 @@ app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 // Use handlebars 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ 
+    defaultLayout: "main"
+  }));
 app.set("view engine", "handlebars");
 
 

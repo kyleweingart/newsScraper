@@ -13,6 +13,8 @@ var db = require("../models");
 
 
 
+
+
 // ROUTES
 // =======================================================================================================
 
@@ -55,37 +57,59 @@ router.get("/scrape", function (req, res) {
 
 
 
-// Route for getting all unsaved articles from the db
-router.get("/articles", function (req, res) {
+// Route for getting all unsaved articles from the db (THE OG)
+// router.get("/articles", function (req, res) {
+//   // Grab every document in the Articles collection
+//   db.Article.find({ saved: false})
+//     .then(function (dbArticle) {
+//       // If we were able to successfully find Articles, send them back to the client
+//       res.json(dbArticle);
+//     })
+//     .catch(function (err) {
+//       // If an error occurred, send it to the client
+//       res.json(err);
+//     });
+// });
+
+// Handlebars route (Trying it out)
+router.get("/", function (req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({ saved: false})
-    .then(function (dbArticle) {
-      // If we were able to successfully find Articles, send them back to the client
-      res.json(dbArticle);
-    })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
+  db.Article.find({saved: false})
+  .then(function(dbArticle) {
+    res.render("index", {article: dbArticle});
+  });
+    
 });
 
 
 
 
-// Route for getting all SAVED Articles from the db
-router.get("/savedarticles", function (req, res) {
-  // Grab every document in the Articles collection
-  db.Article.find({ saved: true})
-    .then(function (dbArticle) {
-      // If we were able to successfully find Articles, send them back to the client
-      res.json(dbArticle);
+// Route for getting all SAVED Articles from the db (THE OG)
+// router.get("/savedarticles", function (req, res) {
+//   // Grab every document in the Articles collection
+//   db.Article.find({ saved: true})
+//     .then(function (dbArticle) {
+//       // If we were able to successfully find Articles, send them back to the client
+//       res.json(dbArticle);
       
-    })
-    .catch(function (err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
+//     })
+//     .catch(function (err) {
+//       // If an error occurred, send it to the client
+//       res.json(err);
+//     });
+// });
+
+// Handlebars route for saved articles (Trying it out)
+router.get("/savedarticles", function (req, res) {
+  
+  db.Article.find({ saved: true})
+  .then(function(dbArticle) {
+    res.render("saved", {article: dbArticle});
+  });
+    
 });
+
+
 
 
 
