@@ -1,36 +1,36 @@
 <!--Comment Modal-->
 
-<div class="modal fade comment" id="commentModal{{this._id}}" tabindex="-1" role="dialog">
+<div class="modal fade mdlComment" id="commentModal{{this._id}}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{this.title}}</h4>
+                <h6 class="modal-title" id="commentModalLabel">{{this.title}}</h6>
             </div>
             <div class="modal-body">
-                {{#if this.notes}}
-                    {{#each this.notes}}
+                {{#if this.comments}}
+                    {{#each this.comments}}
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <p class="previousNotes"> {{this.body}}</p>
-                                <button type="button" class="btn btn-danger deleteNote" data-note-id={{this._id}} data-article-id={{this.article}}>X</button>
+                                <p class="previousComments"> {{this.body}}</p>
+                                <button type="button" class="btn btn-danger deleteComment" data-comment-id={{this._id}} data-article-id={{this.article}}>X</button>
                             </div>
                         </div>
                     {{/each}}
                 {{else}}
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h4>No notes for this article yet.</h4>
+                            <p>No comments for this article yet.</p>
                         </div>
                     </div>
                 {{/if}}
                 <div class="form-group">
-                    <textarea id="noteText{{this._id}}" class="form-control" rows="4" placeholder="New Note"></textarea>
+                    <textarea id="commentText{{this._id}}" class="form-control" rows="4" placeholder="New Comment"></textarea>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary saveNote" data-id={{this._id}}>Save Note</button>
+                <button type="button" class="btn btn-primary savecomment" data-id={{this._id}}>Save Comment</button>
             </div>
         </div>
     </div>

@@ -47,7 +47,8 @@ app.use(express.static("public"));
 // Use handlebars 
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ 
-    defaultLayout: "main"
+    defaultLayout: "main",
+    partialsDir: __dirname + '/views/layouts/partials/'
   }));
 app.set("view engine", "handlebars");
 

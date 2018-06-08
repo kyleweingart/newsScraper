@@ -82,18 +82,10 @@ a {
   margin-bottom: 10px;
 }
 
-textarea,
-input {
-  display: block;
-  width: 100%;
-  background-color: #dcdcdc;
+.deleteComment
+{
+  display: inline-block;
 }
-input {
-  height: 36px;
-  font-size: 24px;
-}
-textarea {
-  height: 200px;
-  font-size: 18px;
-}
+
+
 

@@ -9,7 +9,7 @@
             </a>
             <p class="card-text"> {{this.summary}} </p>
             <p class="byline">By: {{this.byline}}</p>
-            <button type="button" class="save btn-outline-danger btn" data-toggle="modal" data-target="commentModal{{this._id}}" data-id={{this._id}}>Comment</button>
+            <button type="button" class="btn btn-outline-danger comment" data-toggle="modal" data-target="#commentModal{{this._id}}" data-id={{this._id}}>Comment</button>
             <button type="button" class="btn btn-outline-dark delete" data-id={{this._id}}>Remove</button>
         </div>
     </div>
@@ -25,5 +25,5 @@
 {{!-- Comment modal --}}
 
 {{#each article}}
-  {{comment-modal}}
+  {{> comment-modal}}
 {{/each}}
