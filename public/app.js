@@ -57,20 +57,20 @@ $(document).ready(function () {
 
   
   
-  // Save comment on article  ************************* needs work
+  // Save comment on article  ************************* 
   $(document).on("click", ".savecomment", function () {
 
     // Grab the id associated with the article from the submit button
-    var thisId = $(this).attr("data-id");
-    console.log(thisID);
+    var modalID = $(this).attr("data-id");
+    console.log(modalID);
     
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({
       method: "POST",
-      url: "/comments/saved/" + thisId,
+      url: "/comments/saved/" + modalID,
       data: {
         // Value taken from title input
-        text: $("#commentText" + thisID).val()
+        text: $("#commentText" + modalID).val()
         // Value taken from note textarea
       
       }
@@ -79,7 +79,7 @@ $(document).ready(function () {
       .then(function (data) {
         // Log the response
         console.log(data);
-        $("#commentText" + thisID).val("");
+        $("#commentText" + modalID).val("");
         $(".mdlComment").modal("hide");
         location.reload();
         

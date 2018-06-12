@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: false
   },
 
   body: {

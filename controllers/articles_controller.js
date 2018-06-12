@@ -42,6 +42,7 @@ router.get("/scrape", function (req, res) {
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
+        // throw in if then statement to only add new articles
         .then(function (dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
@@ -103,7 +104,7 @@ router.get("/articles/:id", function (req, res) {
 router.post("/comments/saved/:id", function (req, res) {
   // Create a new note and pass the req.body to the entry
   db.Comment.create({
-    title: req.body.title,
+    // title: req.body.title,
     body: req.body.text,
     article: req.params.id
 
